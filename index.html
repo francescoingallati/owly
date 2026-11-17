@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owly</title>
+</head>
+
+
+
+<body>
+  <header>
+    <h1>Owly</h1>
+    <p>Cerca il libro che desideri</p>
+  </header>
+
+  <main>
+    <form id="categoria-form">
+      <label for="categoria-input">Categoria</label>
+      <input type="text" id="categoria-input" placeholder="Es. fantasy, animals, space">
+      <button type="submit">Cerca libri</button>
+    </form>
+
+    <section id="categorie-popolari">
+      <h2>Categorie popolari</h2>
+      <button type="button" class="categoria" data-categoria="animals">Animali</button>
+      <button type="button" class="categoria" data-categoria="animals">Animali</button>
+      <button type="button" class="categoria" data-categoria="animals">Animali</button>
+      <button type="button" class="categoria" data-categoria="animals">Animali</button>
+      <button type="button" class="categoria" data-categoria="animals">Animali</button>
+      <button type="button" class="categoria" data-categoria="animals">Animali</button>
+    </section>
+
+    <!-- Zona messaggi: caricamento, errori, "nessun libro" -->
+    <p id="messaggi" aria-live="polite"></p>
+
+    <!-- Zona risultati: JavaScript aggiunge un <li> per ogni libro -->
+    <section id="risultati">
+      <ul id="lista-libri"></ul>
+    </section>
+
+    <!-- Finestra della descrizione: invisibile finché JavaScript non la apre -->
+    <dialog id="dettaglio-libro">
+      <button type="button" id="chiudi-dettaglio" aria-label="Chiudi">✕</button>
+      <div id="dettaglio-contenuto"></div>
+    </dialog>
+  </main>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+
+</html>
