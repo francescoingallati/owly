@@ -1,13 +1,30 @@
 import '../css/style.css';
 
-const formCategoria = document.getElementById("categoria-form");
+import { preparaCategoria } from './data.js';
 
-const inputCategoria = document.getElementById("categoria-input"); 
+import { cercaLibri } from './api.js';
 
-formCategoria.addEventListener("submit", event => {
+const categoriaForm = document.getElementById("categoria-form");
+
+const categoriaInput = document.getElementById("categoria-input");
+
+categoriaForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const categoria = inputCategoria.value;
+  const categoria = categoriaInput.value.trim();
+  
+  if (!categoria) {
+    console.log("Inserisci una categoria valida")
+    return
+  }
 
-  console.log(categoria);
+  const categoriaPronta = preparaCategoria(categoria)
+  console.log(categoriaPronta)
+
+    try {                                          
+    const dati = await cercaLibri(categoriaPronta);
+    console.log(dati.works);
+  } catch (errore) {
+    console.log("Qualcosa è andato storto:", errore.message);
+  }
 });
