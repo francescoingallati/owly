@@ -1,5 +1,3 @@
-import { mostraMessaggio } from "./ui";
-
 export function preparaCategoria(testo) {
     const risultato = testo.toLowerCase().replaceAll(" ", "_");
     return risultato;
@@ -27,4 +25,16 @@ export function estraiAutori(authors) {
 
     // 4. uniscili in una sola stringa
     return nomiUnici.join(", ");
+}
+
+export function estraiDescrizione(description) {
+  if (typeof description === 'string') {
+    return description;
+  }
+
+  if (typeof description === 'object' && description !== null && typeof description.value === 'string') {
+    return description.value;
+  }
+
+  return 'La descrizione di questo libro non è presente';
 }

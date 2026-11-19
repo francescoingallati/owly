@@ -10,3 +10,14 @@ export async function cercaLibri(categoria) {
 
   return await response.json();
 }
+
+export async function cercaDettaglio(key) {
+    const url = `${BASE_URL}${key}.json`;
+    const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Errore ${response.status}`);
+  }
+
+  return await response.json();
+}

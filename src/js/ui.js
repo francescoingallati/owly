@@ -5,12 +5,17 @@ export function mostraMessaggio(testo) {
   messaggi.textContent = testo;
 }
 
-export function mostraLibri(libri) {
+export function mostraLibri(libri, alClickLibro) {
   listaLibri.textContent = "";
 
   libri.forEach((libro) => {
     const elemento = document.createElement("li");
-    elemento.textContent = `${libro.titolo} - ${libro.autori}`;
+    const pulsante = document.createElement("button");
+    pulsante.type = "button";
+    pulsante.textContent = `${libro.titolo} - ${libro.autori}`;
+    pulsante.addEventListener("click", () => alClickLibro(libro));
+
+    elemento.appendChild(pulsante);
     listaLibri.appendChild(elemento);
   });
 }

@@ -10,6 +10,10 @@ const categoriaForm = document.getElementById("categoria-form");
 
 const categoriaInput = document.getElementById("categoria-input");
 
+function apriLibro(libro) {
+  console.log(libro.key);
+}
+
 async function eseguiRicerca(testo){
    if (!testo) {
     mostraMessaggio("Inserisci una categoria valida");
@@ -30,7 +34,7 @@ async function eseguiRicerca(testo){
     }
 
     mostraMessaggio("");
-    mostraLibri(libri);
+    mostraLibri(libri, apriLibro);
 
   } catch (errore) {
     mostraMessaggio("Impossibile caricare i libri. Riprova.");
@@ -43,4 +47,13 @@ categoriaForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const categoria = categoriaInput.value.trim();
   eseguiRicerca(categoria)
+});
+
+const pulsantiCategoria = document.querySelectorAll(".categoria");
+
+pulsantiCategoria.forEach((pulsante) => {
+  pulsante.addEventListener("click", () => {
+    const categoria = pulsante.dataset.categoria;
+    eseguiRicerca(categoria);
+  });
 });
