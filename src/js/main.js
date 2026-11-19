@@ -1,18 +1,14 @@
 import '../css/style.css';
 
-import { preparaCategoria, pulisciLibri } from './data.js';
+import { estraiDescrizione, preparaCategoria, pulisciLibri } from './data.js';
 
-import { cercaLibri } from './api.js';
+import { cercaDettaglio, cercaLibri } from './api.js';
 
-import { mostraLibri, mostraMessaggio } from './ui.js';
+import { mostraLibri, mostraMessaggio, apriDettaglio, mostraDettaglio } from './ui.js';
 
 const categoriaForm = document.getElementById("categoria-form");
 
 const categoriaInput = document.getElementById("categoria-input");
-
-function apriLibro(libro) {
-  console.log(libro.key);
-}
 
 async function eseguiRicerca(testo){
    if (!testo) {
@@ -57,3 +53,19 @@ pulsantiCategoria.forEach((pulsante) => {
     eseguiRicerca(categoria);
   });
 });
+
+async function apriLibro(libro) {
+  apriDettaglio("Caricamento della descrizione...");
+  try{
+    const dettaglio = await cercaDettaglio(libro.key);
+
+    const descrizione = estraiDescrizione(dettaglio.description);
+
+    mostraDettaglio(libro, descrizione)  
+  }
+
+  catch (errore) {
+    apriDettaglio("Impossibile caricare la descrizione. Riprova.");
+    console.error(errore); 
+  }
+}
