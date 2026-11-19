@@ -1,30 +1,46 @@
 import '../css/style.css';
 
-import { preparaCategoria } from './data.js';
+import { preparaCategoria, pulisciLibri } from './data.js';
 
 import { cercaLibri } from './api.js';
+
+import { mostraLibri, mostraMessaggio } from './ui.js';
 
 const categoriaForm = document.getElementById("categoria-form");
 
 const categoriaInput = document.getElementById("categoria-input");
 
-categoriaForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+async function eseguiRicerca(testo){
+   if (!testo) {
+    mostraMessaggio("Inserisci una categoria valida");
+    return;
 
-  const categoria = categoriaInput.value.trim();
-  
-  if (!categoria) {
-    console.log("Inserisci una categoria valida")
-    return
   }
 
-  const categoriaPronta = preparaCategoria(categoria)
-  console.log(categoriaPronta)
+  const categoriaPronta = preparaCategoria(testo)
 
-    try {                                          
+  try {
+    mostraMessaggio("Sto cercando i tuoi libri ...");
     const dati = await cercaLibri(categoriaPronta);
-    console.log(dati.works);
+    const libri = pulisciLibri(dati.works);
+
+    if (libri.length === 0) {
+      mostraMessaggio("Nessun libro trovato per questa categoria");
+      return;
+    }
+
+    mostraMessaggio("");
+    mostraLibri(libri);
+
   } catch (errore) {
-    console.log("Qualcosa è andato storto:", errore.message);
+    mostraMessaggio("Impossibile caricare i libri. Riprova.");
+    console.error(errore); 
   }
+
+}
+
+categoriaForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const categoria = categoriaInput.value.trim();
+  eseguiRicerca(categoria)
 });
