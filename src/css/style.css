@@ -75,6 +75,8 @@ input:focus {
 
 button {
   font: inherit;
+  color: inherit;
+  appearance: none;
   cursor: pointer;
   border: none;
   border-radius: var(--raggio);
