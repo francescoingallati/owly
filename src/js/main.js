@@ -32,7 +32,6 @@ async function eseguiRicerca(testo) {
   try {
     const dati = await cercaLibri(categoriaPronta);
 
-    // Nel frattempo è partita un'altra ricerca? Questa risposta è vecchia: la ignoro.
     if (numeroRicerca !== ultimaRicerca) return;
 
     const libri = pulisciLibri(dati.works);
@@ -67,7 +66,7 @@ pulsantiCategoria.forEach((pulsante) => {
   });
 });
 
-// Stessa idea per il dettaglio: conta solo l'ultimo libro cliccato.
+// Come per le ricerche: conta solo l'ultimo libro cliccato.
 let ultimoDettaglio = 0;
 
 async function apriLibro(libro) {

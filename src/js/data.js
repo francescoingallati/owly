@@ -24,13 +24,13 @@ export function estraiAutori(authors) {
 }
 
 export function estraiDescrizione(description) {
-  if (typeof description === 'string') {
-    return description;
-  }
+    if (typeof description === 'string') {
+        return description;
+    }
 
-  if (typeof description === 'object' && description !== null && typeof description.value === 'string') {
-    return description.value;
-  }
+    if (typeof description === 'object' && description !== null && typeof description.value === 'string') {
+        return description.value;
+    }
 
-  return 'La descrizione di questo libro non è presente';
+    return 'La descrizione di questo libro non è presente';
 }
