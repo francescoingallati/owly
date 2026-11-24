@@ -157,7 +157,6 @@ dialog {
   width: min(600px, 92vw);
   max-height: 85vh;
   padding: 0;
-  /* il padding va dentro, così il click fuori chiude bene */
   border: none;
   border-radius: var(--raggio);
   background: var(--carta);
@@ -173,7 +172,6 @@ dialog::backdrop {
   white-space: pre-line;
   max-height: 85vh;
   overflow-y: auto;
-  /* rispetta gli a capo delle descrizioni */
 }
 
 #dettaglio-contenuto h2 {
