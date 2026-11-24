@@ -209,3 +209,19 @@ dialog::backdrop {
     font-size: 2.1rem;
   }
 }
+
+.logo {
+  width: 56px;
+  height: 56px;
+  vertical-align: middle;
+}
+
+/* Finestra aperta: la pagina dietro non scorre */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Arrivato in fondo al testo, lo scorrimento non "passa" alla pagina */
+#dettaglio-contenuto {
+  overscroll-behavior: contain;
+}
